@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<digester-rules>
+	<pattern value="shells">
+		<object-create-rule classname="java.util.ArrayList"/>		
+	</pattern>
+	<pattern value="shells/netstatShell">
+		<object-create-rule classname="roxia.support.shell.definition.NetstatShellDefenition" />
+		<set-properties-rule>
+			<alias attr-name="id" prop-name="id"/>
+			<alias attr-name="warningValue" prop-name="warningValue"/>
+			<alias attr-name="checkRow" prop-name="checkRow"/>
+			<alias attr-name="command" prop-name="shellCommand"/>
+			<alias attr-name="shellType" prop-name="shellType"/>
+			<alias attr-name="port" prop-name="port"/>
+		</set-properties-rule>
+		<set-next-rule methodname="add"/>
+
+	</pattern>
+	
+	
+</digester-rules>

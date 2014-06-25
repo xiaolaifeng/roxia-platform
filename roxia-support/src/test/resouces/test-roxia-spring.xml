@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+           http://www.springframework.org/schema/context   
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+           http://www.springframework.org/schema/aop   
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	<context:component-scan base-package="roxia.support" />
+
+<context:property-placeholder
+		location="classpath:jms.properties" />
+
+	<import resource="classpath:spring-jms-monitor.xml" />
+	<import resource="classpath:spring-camel-monitor.xml" />
+	<import resource="classpath:spring-tx.xml" />
+
+
+	<bean id="shellManipulatorFactory" class="roxia.support.shell.ShellManipulatorFactory">
+		<property name="config"><value>shell/shell-template.xml</value></property>
+	</bean>
+	<bean id="monitor1Shell" factory-bean="shellManipulatorFactory" factory-method="createNetstatShellDefenition">
+		<constructor-arg>
+			<array>
+				<value>monitor-app1-61616</value>
+			</array>
+		</constructor-arg>
+	</bean>
+
+
+
+	<bean id="monitorConfig" class="cn.baozun.bh.util.ReloadableProperties">
+		<property name="cacheSeconds" value="-1"></property>
+		<property name="fileNames">
+			<list>
+				<value>classpath:config/config-monitor</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="monitorConfigService" class="cn.baozun.bh.util.ReloadablePropertiesUtil">
+		<property name="properties">
+			<ref bean="monitorConfig" />
+		</property>
+	</bean>
+
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<props>
+				<prop key="resource.loader">class</prop>
+				<prop key="class.resource.loader.class">
+					org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+				</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

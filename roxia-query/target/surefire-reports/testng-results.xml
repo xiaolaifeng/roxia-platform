@@ -1,0 +1,14 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="Command line suite">
+    <groups>
+    </groups>
+    <test name="Command line test">
+      <class name="roxia.core.AppTest">
+        <test-method status="PASS" signature="testApp()" name="testApp" duration-ms="2" started-at="2014-05-13T10:57:01Z" finished-at="2014-05-13T10:57:01Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

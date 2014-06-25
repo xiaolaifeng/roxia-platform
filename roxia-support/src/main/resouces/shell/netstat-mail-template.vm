@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+		<style>
+			body {TEXT-ALIGN: center;background-color:#CFF;color:#333}
+			font {font-family:微软雅黑,楷体,宋体;font-size:18px}
+			table {margin:auto; border-collapse:collapse;border:dotted #000000; border-width:0px 0px 0px 0px}
+			#table thead td{font-size:12px;font-weight:bold}
+			#table tbody td{font-size:12px}
+			#center { MARGIN-RIGHT: auto; MARGIN-LEFT: auto; }
+			table tbody td{border:dotted #000000; border-width:1px 1px 1px 1px; padding:5px 0px;}
+			table thead td{border:dotted #000000; border-width:1px 1px 1px 1px; padding:5px 0px;}
+			#tableDiv{width:80%;MARGIN-RIGHT: auto; MARGIN-LEFT: auto;}
+
+			#titleDiv{padding-bottom:20px;}
+			#bottomDiv{padding-bottom:10px;font-size:14px}
+			.warning1{color:red}
+			.warning0{color:blank}
+		</style>
+	</head>
+	<body>
+		<div id="titleDiv"><font> 监控服务器运行状态   ip[$targetIp]:port[$targetPort]</font></div>
+		<div id="tableDiv">
+			<table id="table">
+				<thead>
+					<tr>
+						<td width="20%">目标ip</td>
+						<td width="15%">黏性连接数</td>
+					</tr>
+				</thead>
+				<tbody>
+				#foreach($msg in $monitorMsgs)
+					<tr class="warning$!msg.level">
+						<td>$!msg.targetIp</td>
+						<td>$!msg.count</td>
+					</tr>
+				#end	
+				</tbody>
+			</table>
+		</div>
+		
+		<div id="bottomDiv"><font> 注：标红的ip表示连接过多。请各服务器负责人核查。</font></div>
+
+	</body>
+</html>
+</html>

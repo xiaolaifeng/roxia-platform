@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shells xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="exceltemplate-1.0.xsd">
+	<netstatShell id="monitor-app1-61616" warningValue="100" checkRow="0" port="61616"
+		command="netstat -n|grep :61616|awk  '{print $5}'|awk -F ':' '{print$1}'|sort|uniq -c"
+		shellType="netstat" />
+	<netstatShell id="monitor-app1-22" warningValue="100" checkRow="0" port="22"
+		command="netstat -n|grep :22|awk  '{print $5}'|awk -F ':' '{print$1}'|sort|uniq -c"
+		shellType="netstat" />
+</shells>
